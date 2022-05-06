@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FlowerApi.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +22,7 @@ namespace FlowerApi.Controllers
         
         [HttpGet]
         [Route("userId")]
-        public ActionResult<Product> GetAllUsersProducts(Guid userId)
+        public ActionResult<IEnumerable<Product>> GetAllUserProducts(Guid userId)
         {
             var products = _productService.GetAllProductsByUserId(userId);
             if (products == null)

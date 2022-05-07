@@ -21,6 +21,8 @@ namespace FlowerApi.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
+            Logger _logger = new Logger();
+            _logger.Log("Controller GET2");
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),

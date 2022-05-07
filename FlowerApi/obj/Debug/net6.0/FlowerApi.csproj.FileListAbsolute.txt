@@ -25,3 +25,4 @@ C:\Users\IT\Desktop\psk\api\FlowerApi\obj\Debug\net6.0\refint\FlowerApi.dll
 C:\Users\IT\Desktop\psk\api\FlowerApi\obj\Debug\net6.0\FlowerApi.pdb
 C:\Users\IT\Desktop\psk\api\FlowerApi\obj\Debug\net6.0\FlowerApi.genruntimeconfig.cache
 C:\Users\IT\Desktop\psk\api\FlowerApi\obj\Debug\net6.0\ref\FlowerApi.dll
+C:\Users\IT\Desktop\psk\api\FlowerApi\bin\Debug\net6.0\Properties\application.config

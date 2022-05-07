@@ -1,8 +1,8 @@
 ﻿namespace FlowerApi.Entities
 {
     public struct PriceType {
-        int Euros;
-        int Cents;
+        public int Euros;
+        public int Cents;
     }
     public class Cart
     {

@@ -1,4 +1,7 @@
-﻿namespace FlowerApi.Entities
+﻿using System;
+using System.Collections.Generic;
+
+namespace FlowerApi.Entities
 {
     public class User
     {

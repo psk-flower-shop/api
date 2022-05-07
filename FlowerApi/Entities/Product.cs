@@ -1,4 +1,5 @@
-﻿namespace FlowerApi.Entities
+﻿using System;
+namespace FlowerApi.Entities
 {
     public class Product
     {

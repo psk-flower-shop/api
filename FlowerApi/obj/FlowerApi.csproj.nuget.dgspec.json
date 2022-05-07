@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\IT\\Desktop\\psk\\api\\FlowerApi\\FlowerApi.csproj": {}
+    "C:\\Users\\tadas\\OneDrive\\Desktop\\VU\\6 pusmetis\\Programu sistemu kurimas\\grupinis\\FlowerApi\\FlowerApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\IT\\Desktop\\psk\\api\\FlowerApi\\FlowerApi.csproj": {
+    "C:\\Users\\tadas\\OneDrive\\Desktop\\VU\\6 pusmetis\\Programu sistemu kurimas\\grupinis\\FlowerApi\\FlowerApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\IT\\Desktop\\psk\\api\\FlowerApi\\FlowerApi.csproj",
+        "projectUniqueName": "C:\\Users\\tadas\\OneDrive\\Desktop\\VU\\6 pusmetis\\Programu sistemu kurimas\\grupinis\\FlowerApi\\FlowerApi.csproj",
         "projectName": "FlowerApi",
-        "projectPath": "C:\\Users\\IT\\Desktop\\psk\\api\\FlowerApi\\FlowerApi.csproj",
-        "packagesPath": "C:\\Users\\IT\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\IT\\Desktop\\psk\\api\\FlowerApi\\obj\\",
+        "projectPath": "C:\\Users\\tadas\\OneDrive\\Desktop\\VU\\6 pusmetis\\Programu sistemu kurimas\\grupinis\\FlowerApi\\FlowerApi.csproj",
+        "packagesPath": "C:\\Users\\tadas\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tadas\\OneDrive\\Desktop\\VU\\6 pusmetis\\Programu sistemu kurimas\\grupinis\\FlowerApi\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\IT\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tadas\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,6 +43,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "BCrypt": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
@@ -63,7 +70,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

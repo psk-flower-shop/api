@@ -8,11 +8,11 @@ namespace FlowerApi.Services
 	public class ProductService : IProductService
 	{
 
-        private readonly IProductRepository _mockProductRepository;
+        private readonly IProductRepository _productRepository;
 
 		public ProductService(IProductRepository repository)
 		{
-            _mockProductRepository = repository;
+            _productRepository = repository;
 		}
 
         public Task<Product> CreateProduct()
@@ -25,14 +25,14 @@ namespace FlowerApi.Services
             throw new NotImplementedException();
         }
 
-        public Product GetProductById(int id)
+        public Product GetProductById(Guid id)
         {
-            throw new NotImplementedException();
+            return _productRepository.GetProductById(id);
         }
 
         public IEnumerable<Product> GetProducts()
         {
-            return _mockProductRepository.GetProducts();
+            return _productRepository.GetProducts();
         }
 
         public Task<Product> UpdateProduct()

@@ -53,3 +53,13 @@ C:\Users\tadas\OneDrive\Desktop\VU\6 pusmetis\Programu sistemu kurimas\grupinis\
 C:\Users\tadas\OneDrive\Desktop\VU\6 pusmetis\Programu sistemu kurimas\grupinis\FlowerApi\obj\Debug\net6.0\scopedcss\bundle\FlowerApi.styles.css
 C:\Users\tadas\OneDrive\Desktop\VU\6 pusmetis\Programu sistemu kurimas\grupinis\FlowerApi\obj\Debug\net6.0\FlowerApi.csproj.CopyComplete
 C:\Users\tadas\OneDrive\Desktop\VU\6 pusmetis\Programu sistemu kurimas\grupinis\FlowerApi\obj\Debug\net6.0\FlowerApi.genruntimeconfig.cache
+C:\Users\PC\Documents\PSK-Flower-Shop-API\FlowerApi\obj\Debug\net6.0\FlowerApi.csproj.AssemblyReference.cache
+C:\Users\PC\Documents\PSK-Flower-Shop-API\FlowerApi\obj\Debug\net6.0\FlowerApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PC\Documents\PSK-Flower-Shop-API\FlowerApi\obj\Debug\net6.0\FlowerApi.AssemblyInfoInputs.cache
+C:\Users\PC\Documents\PSK-Flower-Shop-API\FlowerApi\obj\Debug\net6.0\FlowerApi.AssemblyInfo.cs
+C:\Users\PC\Documents\PSK-Flower-Shop-API\FlowerApi\obj\Debug\net6.0\FlowerApi.csproj.CoreCompileInputs.cache
+C:\Users\PC\Documents\PSK-Flower-Shop-API\FlowerApi\obj\Debug\net6.0\FlowerApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\PC\Documents\PSK-Flower-Shop-API\FlowerApi\obj\Debug\net6.0\FlowerApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\PC\Documents\PSK-Flower-Shop-API\FlowerApi\obj\Debug\net6.0\FlowerApi.dll
+C:\Users\PC\Documents\PSK-Flower-Shop-API\FlowerApi\obj\Debug\net6.0\refint\FlowerApi.dll
+C:\Users\PC\Documents\PSK-Flower-Shop-API\FlowerApi\obj\Debug\net6.0\FlowerApi.pdb

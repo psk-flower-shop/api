@@ -1,13 +1,18 @@
 ﻿using System;
 using FlowerApi.Services.Interfaces;
 using FlowerApi.Entities;
+using FlowerApi.Repositories;
 
 namespace FlowerApi.Services
 {
 	public class ProductService : IProductService
 	{
-		public ProductService()
+
+        private readonly MockProductRepository _mockProductRepository;
+
+		public ProductService(MockProductRepository repository)
 		{
+            _mockProductRepository = repository;
 		}
 
         public Task<Product> CreateProduct()
@@ -27,7 +32,7 @@ namespace FlowerApi.Services
 
         public IEnumerable<Product> GetProducts()
         {
-            throw new NotImplementedException();
+            return _mockProductRepository.GetProducts();
         }
 
         public Task<Product> UpdateProduct()

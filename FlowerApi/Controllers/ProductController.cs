@@ -22,10 +22,9 @@ namespace FlowerApi.Controllers
         // nzn ar visu getu cia reikia, tai jei ka, istrint
         
         [HttpGet]
-        [Route("userId")]
-        public ActionResult<IEnumerable<Product>> GetAllProducts(Guid userId)
+        public ActionResult<IEnumerable<Product>> GetProducts()
         {
-            throw new NotImplementedException();
+            return Ok(this._productService.GetProducts());
         }
         
         [HttpGet]

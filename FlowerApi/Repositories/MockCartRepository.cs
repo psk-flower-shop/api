@@ -1,14 +1,17 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using FlowerApi.Entities;
 
 namespace FlowerApi.Repositories
 {
-    public class MockCartRepository
+    public class MockCartRepository : ICartRepository
     {
         private readonly List<Cart> carts = new()
         {
-            new Cart {Id = Guid.NewGuid(), Price = new PriceType {Euros = 40, Cents = 56}},
-            new Cart {Id = Guid.NewGuid(), Price = new PriceType {Euros = 60, Cents = 34}},
-            new Cart {Id = Guid.NewGuid(), Price = new PriceType {Euros = 23, Cents = 20}}
+            new Cart {Id = Guid.NewGuid(), Price = 44},
+            new Cart {Id = Guid.NewGuid(), Price = 23},
+            new Cart {Id = Guid.NewGuid(), Price = 14}
         };
 
         public IEnumerable<Cart> GetCarts()

@@ -11,14 +11,14 @@ namespace FlowerApi.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public string? Name { get; set; }
-        public List<Product>? Products { get; set; }
+
+        public List<Product> Products { get; set; }
 
         public Category() { }
 
-        public Category(Guid ID, string Name, List<Product> Products) {
+        public Category(Guid ID, string Name) {
             Id = ID;
             this.Name = Name;
-            this.Products = Products;
         }
         
         public override bool Equals(object? obj)

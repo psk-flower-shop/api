@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FlowerApi.Entities
@@ -9,14 +8,19 @@ namespace FlowerApi.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
-        public PriceType Price { get; set; }
+        public decimal Price { get; set; }
         public int Amount { get; set; }
         public string? Name { get; set; }
+
+        public Guid CategoryId { get; set; }
         public Category? Category { get; set; }
+
+        public List<User> Users { get; set; }
+        public Cart Cart { get; set; }
 
         public Product() { }
 
-        public Product(Guid ID, PriceType price, int amount, string name, Category category) {
+        public Product(Guid ID, decimal price, int amount, string name, Category category) {
             this.Id = ID;
             this.Price = price;
             this.Amount = amount;

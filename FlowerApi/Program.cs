@@ -2,19 +2,23 @@ using FlowerApi.Data;
 using FlowerApi.Services;
 using FlowerApi.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using FlowerApi.Repositories;
+using FlowerApi.Repositories.Interfaces;
+using FlowerApi.Services;
+using FlowerApi.Services.Interfaces;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<MySQLDBContext>(options =>
-{
-    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-});
-
 builder.Services.AddControllers();
 
+builder.Services.AddScoped<IProductRepository, MockProductRepository>();
+builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddSingleton<IRegisterService, RegisterService>();
 builder.Services.AddSingleton<ILoginService, LoginService>();
 builder.Services.AddSingleton<IHashPasswordService, HashPasswordService>();

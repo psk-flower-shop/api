@@ -1,8 +1,12 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using FlowerApi.Entities;
+using FlowerApi.Repositories.Interfaces;
 
 namespace FlowerApi.Repositories
 {
-    public class MockCategoryRepository
+    public class MockCategoryRepository : ICategoryRepository
     {
         private readonly List<Category> categories = new()
         {

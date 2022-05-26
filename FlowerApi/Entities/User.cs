@@ -14,7 +14,8 @@ namespace FlowerApi.Entities
         public string? Email { get; set; }
         public string? Password { get; set; }
         public List<Product>? FavoriteProducts { get; set; }
-        public Cart? Cart { get; set; }
+
+        public Cart Cart { get; set; }
 
         public User() {
         }

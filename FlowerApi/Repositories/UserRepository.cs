@@ -14,6 +14,11 @@ namespace FlowerApi.Repositories
 
 		}
 
+        public bool DeleteUser(User user)
+        {
+            throw new NotImplementedException();
+        }
+
         public User GetUserById(Guid id)
         {
             var user = _context.Users.ToList().FirstOrDefault(us => us.Id == id);

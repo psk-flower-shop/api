@@ -15,8 +15,7 @@ namespace FlowerApi.Entities
 
         public Cart() { }
 
-        public Cart(Guid ID, PriceType price, List<Product> productsInCart) {
-            this.Id = ID;
+        public Cart( PriceType price, List<Product> productsInCart) {
             this.Price = price;
             this.ProductsInCart = productsInCart;
         }

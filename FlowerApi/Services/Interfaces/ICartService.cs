@@ -11,7 +11,7 @@ namespace FlowerApi.Services.Interfaces
         public Task<bool> CreateCart(User user,int cents, int euros, List<Product> products);
         public Task<bool> DeleteCart(User user,int id);
         public Task<Cart> FindCart(Guid id);
-        public Task<bool> UpdateCart(int id, PriceType price, List<Product> products);
+        public Task<bool> UpdateCart(int id, decimal price, List<Product> products);
         public Task<bool> AddProductToCart(int id, Product product);
         public Task<bool> RemoveProductFromCart(int id, Product product);
 

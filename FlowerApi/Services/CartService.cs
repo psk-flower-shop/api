@@ -43,7 +43,7 @@ namespace FlowerApi.Services
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateCart(int id, PriceType price, List<Product> products)
+        public Task<bool> UpdateCart(int id, decimal price, List<Product> products)
         {
             throw new NotImplementedException();
         }

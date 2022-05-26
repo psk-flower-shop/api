@@ -15,14 +15,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<FlowersContext>();
 
 builder.Services.AddControllers();
-builder.Services.AddScoped<IUserRepository,MockUserRepository>();
+builder.Services.AddScoped<IUserRepository,UserRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddSingleton<IRegisterService, RegisterService>();
 builder.Services.AddSingleton<ILoginService, LoginService>();
 builder.Services.AddSingleton<IHashPasswordService, HashPasswordService>();
-
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

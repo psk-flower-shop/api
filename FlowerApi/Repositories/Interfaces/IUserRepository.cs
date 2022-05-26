@@ -7,7 +7,6 @@ namespace FlowerApi.Repositories.Interfaces
     public interface IUserRepository
     { 
             public IEnumerable<User> GetUsers();
-
             public User GetUserById(Guid id);
         
     }

@@ -7,13 +7,11 @@ namespace FlowerApi.Services.Interfaces
 {
     public interface ICartService
     {
-        public Task<bool> AddCart(User user,Cart cart);
         public Task<bool> CreateCart(User user,int cents, int euros, List<Product> products);
-        public Task<bool> DeleteCart(User user,int id);
-        public Task<Cart> FindCart(Guid id);
-        public Task<bool> UpdateCart(int id, decimal price, List<Product> products);
-        public Task<bool> AddProductToCart(int id, Product product);
-        public Task<bool> RemoveProductFromCart(int id, Product product);
-
+        public bool DeleteCart(User user);
+        public Cart FindCart(Guid id);
+        public bool UpdateCart(Guid id, PriceType price, List<Product> products);
+        public Task<bool> AddProductToCart(Guid id, Product product);
+        public bool RemoveProductFromCart(Guid id, Product product);
     }
 }

@@ -1,16 +1,16 @@
 ﻿using System;
 using FlowerApi.Services.Interfaces;
 using FlowerApi.Entities;
-using FlowerApi.Repositories;
+using FlowerApi.Repositories.Interfaces;
 
 namespace FlowerApi.Services
 {
 	public class ProductService : IProductService
 	{
 
-        private readonly MockProductRepository _mockProductRepository;
+        private readonly IProductRepository _mockProductRepository;
 
-		public ProductService(MockProductRepository repository)
+		public ProductService(IProductRepository repository)
 		{
             _mockProductRepository = repository;
 		}

@@ -2,23 +2,22 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FlowerApi.Entities;
+using FlowerApi.Repositories;
+using FlowerApi.Repositories.Interfaces;
 using FlowerApi.Services.Interfaces;
 
 namespace FlowerApi.Services
 {
     public class CartService : ICartService
     {
+        IUserRepository _userRepo;
 
-        public CartService()
+        public CartService( IUserRepository userRepository)
         {
+            this._userRepo = userRepository;
         }
 
-        public Task<bool> AddCart(User user, Cart cart)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> AddProductToCart(int id, Product product)
+        public Task<bool> AddProductToCart(Guid id, Product product)
         {
             throw new NotImplementedException();
         }
@@ -28,24 +27,56 @@ namespace FlowerApi.Services
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteCart(User user, int id)
+        public bool DeleteCart(User user)
         {
-            throw new NotImplementedException();
+            user.Cart = null;
+            return true;
         }
 
-        public Task<Cart> FindCart(Guid id)
+        public Cart FindCart(Guid id)
         {
-            throw new NotImplementedException();
+           var user = _userRepo.GetUserById(id);
+            if (user.Cart != null)
+            {
+                return  user.Cart;
+            }
+            return null;
         }
 
-        public Task<bool> RemoveProductFromCart(int id, Product product)
+        public bool RemoveProductFromCart(Guid id, Product product)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var user = _userRepo.GetUserById(id);
+                user.Cart?.ProductsInCart?.Remove(product);
+                user.Cart = CalculateNewCartPrice(user.Cart, product.Price);
+                return true;
+            }
+            catch(NullReferenceException) {
+                return false;
+            }
+            
         }
 
-        public Task<bool> UpdateCart(int id, decimal price, List<Product> products)
+        public Cart CalculateNewCartPrice(Cart cart,PriceType price) {
+            int euros = cart.Price.Euros;
+            int cents = cart.Price.Cents;
+            euros -= price.Euros;
+            cents -= price.Cents;
+            if (cents < 0) {
+                euros--;
+                cents = 100 - cents;
+            }
+            cart.Price = new PriceType() { Euros = euros, Cents = cents };
+            return cart;
+        }
+
+        public bool UpdateCart(Guid id, PriceType price, List<Product> products)
         {
-            throw new NotImplementedException();
+            var user = this._userRepo.GetUserById(id);
+            user.Cart = new Cart(price,products);
+            //_userRepo.UpdateUser(user);
+            return true;
         }
     }
 }

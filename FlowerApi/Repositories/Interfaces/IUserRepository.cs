@@ -9,6 +9,7 @@ namespace FlowerApi.Repositories.Interfaces
             public IEnumerable<User> GetUsers();
 
             public User GetUserById(Guid id);
+            public bool DeleteUser(User user);
         
     }
 }

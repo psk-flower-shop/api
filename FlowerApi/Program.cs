@@ -1,6 +1,9 @@
 using FlowerApi.Repositories;
 using FlowerApi.Services;
 using FlowerApi.Services.Interfaces;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddSingleton<IRegisterService, RegisterService>();
 builder.Services.AddSingleton<ILoginService, LoginService>();

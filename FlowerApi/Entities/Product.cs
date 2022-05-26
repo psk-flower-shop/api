@@ -16,7 +16,7 @@ namespace FlowerApi.Entities
         public Category? Category { get; set; }
 
         public List<User> Users { get; set; }
-        public Cart Cart { get; set; }
+        public Cart? Cart { get; set; }
 
         public Product() { }
 

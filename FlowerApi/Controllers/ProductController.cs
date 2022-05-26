@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using FlowerApi.Entities;
 using Microsoft.AspNetCore.Mvc;
+using FlowerApi.Services.Interfaces;
 
 namespace FlowerApi.Controllers
 {
@@ -22,93 +23,51 @@ namespace FlowerApi.Controllers
         
         [HttpGet]
         [Route("userId")]
-        public ActionResult<IEnumerable<Product>> GetAllUserProducts(Guid userId)
+        public ActionResult<IEnumerable<Product>> GetAllProducts(Guid userId)
         {
-            var products = _productService.GetAllProductsByUserId(userId);
-            if (products == null)
-            {
-                return NotFound("No products found");
-            }
-            return Ok(products);
+            throw new NotImplementedException();
         }
         
         [HttpGet]
         [Route("{id}")]
-        public ActionResult<Product> GetProductById(Guid id)
+        public ActionResult<Product> GetProductById()
         {
-            if(id == null || id == Guid.Empty)
-            {
-                return NotFound($"No product with id: {id}");
-            }
-            Product product = _productService.GetProductById(id);
-            if (product == null)
-            {
-                return NotFound("Product not found");
-            }
-            return Ok(product);
+            throw new NotImplementedException();
         }
         
         [HttpGet]
         [Route("{category}")]
-        public ActionResult<Product> GetProductsByCategory(string category)
+        public ActionResult<Product> GetProductsByCategory()
         {
-            Product products = _productService.GetAllProductsByCategory(category);
-            if (products == null)
-            {
-                return NotFound($"No products in {category} category.");
-            }
-            return Ok(products);
+            throw new NotImplementedException();
         }
         
         [HttpGet]
         [Route("{name}")]
-        public ActionResult<Product> GetProductByName(string name)
+        public ActionResult<Product> GetProductByName()
         {
-            Product products = _productService.GetAllProductsByName(name);
-            if (products == null)
-            {
-                return NotFound($"No products by {name} name.");
-            }
-            return Ok(products);
+            throw new NotImplementedException();
         }
         
         [HttpPost]
         [Route("add")]
-        public ActionResult AddProduct(string email, Product product)
+        public ActionResult AddProduct()
         {
-            
-            if (!string.IsNullOrEmpty(email) || product == null)
-            {
-                return BadRequest("user email or product is bad");
-            }
-            
-            _productService.AddProduct(email, product);
-            return Ok($"Added {product.Name} to users {email} sellables");
+            throw new NotImplementedException();
         }
         
         [HttpPut]
         [Route("{id}")]
-        public ActionResult<ProductDto> Update(ProductDto newProduct, Guid id)    // TODO import productdto when db done
+        public ActionResult Update()    // TODO import productdto when db done
         {
-            var product = _productService.Update(newProduct, id);
-            if (product == null)
-            {
-                return NotFound($"No product with id: {id}");
-            }
-
-            return Ok(product);
+            throw new NotImplementedException();
         }
         
         [HttpDelete]
         [Route("{id}")]
         public ActionResult Delete(Guid id)
         {
-            if(id == null || id == Guid.Empty)
-            {
-                return NotFound($"No product with id: {id}");
-            }
-            _productService.Remove(id);
-            return Ok($"Product with id: {id} deleted");
+            throw new NotImplementedException();
         }
         
     }

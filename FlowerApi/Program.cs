@@ -1,4 +1,5 @@
 using FlowerApi.Repositories;
+using FlowerApi.Repositories.Interfaces;
 using FlowerApi.Services;
 using FlowerApi.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -11,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddScoped<MockProductRepository>();
+builder.Services.AddScoped<IProductRepository, MockProductRepository>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddSingleton<IRegisterService, RegisterService>();

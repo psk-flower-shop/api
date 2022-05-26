@@ -1,3 +1,4 @@
+using FlowerApi.Repositories;
 using FlowerApi.Services;
 using FlowerApi.Services.Interfaces;
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddSingleton<IRegisterService, RegisterService>();
 builder.Services.AddSingleton<ILoginService, LoginService>();
 builder.Services.AddSingleton<IHashPasswordService, HashPasswordService>();

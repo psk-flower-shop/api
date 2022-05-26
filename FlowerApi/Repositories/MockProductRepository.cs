@@ -1,8 +1,12 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using FlowerApi.Entities;
+using FlowerApi.Repositories.Interfaces;
 
 namespace FlowerApi.Repositories
 {
-    public class MockProductRepository
+    public class MockProductRepository : IProductRepository
     {
         private readonly List<Product> products = new()
         {

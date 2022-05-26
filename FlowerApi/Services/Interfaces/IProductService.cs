@@ -6,7 +6,7 @@ namespace FlowerApi.Services.Interfaces
 	public interface IProductService
 	{
 		IEnumerable<Product> GetProducts();
-		Product GetProductById(int id);
+		Product GetProductById(Guid id);
 		Task<Product> CreateProduct();
 		Task<Product> DeleteProduct();
 		Task<Product> UpdateProduct();

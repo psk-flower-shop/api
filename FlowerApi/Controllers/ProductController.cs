@@ -28,21 +28,27 @@ namespace FlowerApi.Controllers
         }
         
         [HttpGet]
-        [Route("{id}")]
-        public ActionResult<Product> GetProductById()
+        [Route("findById/{id}")]
+        public ActionResult<Product> GetProductById(Guid id)
         {
-            throw new NotImplementedException();
+            var product = _productService.GetProductById(id);
+            if (product != null)
+            {
+                return Ok(product);
+            }
+
+            return NotFound();
         }
         
         [HttpGet]
-        [Route("{category}")]
+        [Route("findByCatgory/{category}")]
         public ActionResult<Product> GetProductsByCategory()
         {
             throw new NotImplementedException();
         }
         
         [HttpGet]
-        [Route("{name}")]
+        [Route("findByName/{name}")]
         public ActionResult<Product> GetProductByName()
         {
             throw new NotImplementedException();

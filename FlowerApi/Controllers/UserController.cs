@@ -11,7 +11,7 @@ namespace FlowerApi.Controllers
     public class UserController : Controller
     {
 
-        private readonly IUserService _userService;    // TODO DI in program.cs
+        private readonly IUserService _userService;
 
         public UserController(IUserService service)
         {

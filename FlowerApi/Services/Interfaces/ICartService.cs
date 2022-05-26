@@ -13,6 +13,5 @@ namespace FlowerApi.Services.Interfaces
         public bool UpdateCart(Guid id, PriceType price, List<Product> products);
         public Task<bool> AddProductToCart(Guid id, Product product);
         public bool RemoveProductFromCart(Guid id, Product product);
-
     }
 }

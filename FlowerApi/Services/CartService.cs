@@ -49,7 +49,6 @@ namespace FlowerApi.Services
             {
                 var user = _userRepo.GetUserById(id);
                 user.Cart?.ProductsInCart?.Remove(product);
-                user.Cart = CalculateNewCartPrice(user.Cart, product.Price);
                 return true;
             }
             catch(NullReferenceException) {
@@ -58,20 +57,8 @@ namespace FlowerApi.Services
             
         }
 
-        public Cart CalculateNewCartPrice(Cart cart,PriceType price) {
-            int euros = cart.Price.Euros;
-            int cents = cart.Price.Cents;
-            euros -= price.Euros;
-            cents -= price.Cents;
-            if (cents < 0) {
-                euros--;
-                cents = 100 - cents;
-            }
-            cart.Price = new PriceType() { Euros = euros, Cents = cents };
-            return cart;
-        }
 
-        public bool UpdateCart(Guid id, PriceType price, List<Product> products)
+        public bool UpdateCart(Guid id, decimal price, List<Product> products)
         {
             var user = this._userRepo.GetUserById(id);
             user.Cart = new Cart(price,products);

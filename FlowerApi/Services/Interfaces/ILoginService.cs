@@ -10,6 +10,7 @@ namespace FlowerApi.Services.Interfaces
         bool CheckUserLoginInformation(User tryUser, User loginUser);
         void AddUser(User user);
         IEnumerable<User> GetUsers();
+        public User GetUserByGuid(Guid guid);
     }
 
 }

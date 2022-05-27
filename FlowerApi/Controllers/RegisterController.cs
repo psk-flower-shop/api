@@ -26,9 +26,9 @@ namespace FlowerApi.Controllers
         
         [HttpPost]
         [Route("add")]
-        public ActionResult<User> RegisterUser(string name, string email, string password)
+        public ActionResult RegisterUser(string email, string password)
         {
-            User user = new User(Guid.NewGuid(), name, email, password, null, null);
+            User user = new User(Guid.NewGuid(), "s", email, password, null, null);
             try
             {
                 if (user == null)
@@ -36,7 +36,7 @@ namespace FlowerApi.Controllers
                     throw new Exception();
                 }
                 _registerService.RegisterUser(user);
-                return Ok(user);
+                return Ok();
             }
             catch(DuplicateNameException)
             {

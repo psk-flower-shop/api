@@ -24,19 +24,20 @@ namespace FlowerApi.Controllers
         }
         [HttpPost]
         [Route("check")]
-        public ActionResult<User> VerifyUser(User user)
+        public ActionResult<String> VerifyUser(string email, string password)
         {
             try{
                 IEnumerable<User> users = _loginService.GetUsers();
-                User goodUser = users.Single(users => users.Email == user.Email);
+                User goodUser = users.Single(users => users.Email == email);
 
                 if(goodUser == null){
                     throw new KeyNotFoundException();
                 }
-                
+                User user = new User(new Guid(), "s", email, password, null, null);
                 if(_loginService.CheckUserLoginInformation(user, goodUser))
                 {
-                    return Ok(goodUser);
+                    string token = Convert.ToBase64String(goodUser.Id.ToByteArray());
+                    return Ok(token);
                 }
                 throw new System.Exception();
 
@@ -52,6 +53,16 @@ namespace FlowerApi.Controllers
         public ActionResult<List<User>> GetUsers()
         {
             return Ok(_userRepository.GetUsers());
+        }
+
+        [HttpGet]
+        [Route("user")]
+        public ActionResult<User> GetUserByToken(string token)
+        {
+            byte[] data = Convert.FromBase64String(token);
+            Guid guid = new Guid(data);
+
+            return Ok(_loginService.GetUserByGuid(guid));
         }
     }
 }

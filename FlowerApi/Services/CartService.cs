@@ -77,5 +77,9 @@ namespace FlowerApi.Services
             //_userRepo.UpdateUser(user);
             return true;
         }
+
+        public async Task ReserveCart(Guid id) {
+            await _productRepository.MakeReservation(id);
+        }
     }
 }

@@ -19,5 +19,7 @@ namespace FlowerApi.Repositories.Interfaces
         public void UpdateProduct(Guid id, Product product);
 
         public void AddProduct(Product product);
+
+        public Task MakeReservation(Guid userid);
     }
 }

@@ -8,36 +8,53 @@ namespace FlowerApi.Services
 	public class ProductService : IProductService
 	{
 
-        private readonly IProductRepository _mockProductRepository;
+        private readonly IProductRepository _productRepository;
 
 		public ProductService(IProductRepository repository)
 		{
-            _mockProductRepository = repository;
+            _productRepository = repository;
 		}
 
-        public Task<Product> CreateProduct()
+        public Product CreateProduct(Product product)
         {
-            throw new NotImplementedException();
+            _productRepository.AddProduct(product);
+            return product;
         }
 
-        public Task<Product> DeleteProduct()
+        public bool DeleteProduct(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Product product = GetProducts().Single(x => x.Id == id);
+                _productRepository.DeleteProduct(product);
+                return true;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("rip bozo. No such product");
+                return false;
+            }
+            
         }
 
-        public Product GetProductById(int id)
+        public Product GetProductById(Guid id)
         {
-            throw new NotImplementedException();
+            return _productRepository.GetProductById(id);
         }
 
         public IEnumerable<Product> GetProducts()
         {
-            return _mockProductRepository.GetProducts();
+            return _productRepository.GetProducts();
         }
 
-        public Task<Product> UpdateProduct()
+        public Product UpdateProduct(Guid id)
         {
-            throw new NotImplementedException();
+            var product = GetProducts().FirstOrDefault(x => x.Id == id);
+            if (product != null)
+                _productRepository.UpdateProduct(id, product);
+            else return new Product();
+
+            return product;
         }
     }
 }

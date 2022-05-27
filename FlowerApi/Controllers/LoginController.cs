@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using FlowerApi.Entities;
 using FlowerApi.Services;
 using FlowerApi.Services.Interfaces;
+using FlowerApi.Repositories.Interfaces;
 
 namespace FlowerApi.Controllers
 {
@@ -13,11 +14,13 @@ namespace FlowerApi.Controllers
     [Route("api/login")] 
     public class LoginUserController : ControllerBase
     {
+        private readonly IUserRepository _userRepository;
         private readonly ILoginService _loginService;
 
-        public LoginUserController(ILoginService loginService)
+        public LoginUserController(ILoginService loginService, IUserRepository repo)
         {
             _loginService = loginService;
+            _userRepository = repo;
         }
         [HttpPost]
         [Route("check")]
@@ -42,6 +45,13 @@ namespace FlowerApi.Controllers
             }catch(Exception){
                 return NotFound("Bad username or password");
             }
+        }
+
+        [HttpGet]
+        [Route("users")]
+        public ActionResult<List<User>> GetUsers()
+        {
+            return Ok(_userRepository.GetUsers());
         }
     }
 }

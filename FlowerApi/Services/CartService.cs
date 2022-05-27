@@ -11,18 +11,27 @@ namespace FlowerApi.Services
     public class CartService : ICartService
     {
         IUserRepository _userRepo;
+        IProductRepository _productRepository;
 
-        public CartService( IUserRepository userRepository)
+        public CartService( IUserRepository userRepository, IProductRepository productRepository)
         {
             this._userRepo = userRepository;
+            this._productRepository = productRepository;
         }
 
-        public Task<bool> AddProductToCart(Guid id, Product product)
+        public bool AddProductToCart(Guid id, Product product)
         {
-            throw new NotImplementedException();
+            var user = _userRepo.GetUserById(id);
+            if (user.Cart != null)
+            {
+               // user.Cart.ProductsInCart?.Add(product);
+                user.Cart.Price += product.Price;
+                return true;
+            }
+            return false;
         }
 
-        public Task<bool> CreateCart(User user, int cents, int euros, List<Product> products)
+        public bool CreateCart(User user, int cents, int euros, List<Product> products)
         {
             throw new NotImplementedException();
         }
@@ -48,8 +57,7 @@ namespace FlowerApi.Services
             try
             {
                 var user = _userRepo.GetUserById(id);
-                user.Cart?.ProductsInCart?.Remove(product);
-                user.Cart = CalculateNewCartPrice(user.Cart, product.Price);
+               // user.Cart?.ProductsInCart?.Remove(product);
                 return true;
             }
             catch(NullReferenceException) {
@@ -58,23 +66,11 @@ namespace FlowerApi.Services
             
         }
 
-        public Cart CalculateNewCartPrice(Cart cart,PriceType price) {
-            int euros = cart.Price.Euros;
-            int cents = cart.Price.Cents;
-            euros -= price.Euros;
-            cents -= price.Cents;
-            if (cents < 0) {
-                euros--;
-                cents = 100 - cents;
-            }
-            cart.Price = new PriceType() { Euros = euros, Cents = cents };
-            return cart;
-        }
 
-        public bool UpdateCart(Guid id, PriceType price, List<Product> products)
+        public bool UpdateCart(Guid id, decimal price, List<Product> products)
         {
             var user = this._userRepo.GetUserById(id);
-            user.Cart = new Cart(price,products);
+           // user.Cart = new Cart(price,products);
             //_userRepo.UpdateUser(user);
             return true;
         }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using FlowerApi.Entities;
 using Microsoft.AspNetCore.Mvc;
 using FlowerApi.Services.Interfaces;
+using FlowerApi.DTO;
+using AutoMapper;
 
 namespace FlowerApi.Controllers
 {
@@ -12,37 +14,46 @@ namespace FlowerApi.Controllers
     {
         
         private readonly IProductService _productService;    // TODO DI in program.cs
+        private readonly IMapper _mapper;
         
-        public ProductController(IProductService service)
+        public ProductController(IProductService service, IMapper mapper)
         {
             _productService = service;
+            _mapper = mapper;
         }
         
         // /api/product/{id}
         // nzn ar visu getu cia reikia, tai jei ka, istrint
         
         [HttpGet]
-        public ActionResult<IEnumerable<Product>> GetProducts()
+        public ActionResult<IEnumerable<ProductDTO>> GetProducts()
         {
-            return Ok(this._productService.GetProducts());
+            return Ok(_mapper.Map<List<ProductDTO>>(this._productService.GetProducts()));
         }
         
         [HttpGet]
-        [Route("{id}")]
-        public ActionResult<Product> GetProductById()
+        [Route("findById/{id}")]
+        public ActionResult<ProductDTO> GetProductById(Guid id)
         {
-            throw new NotImplementedException();
+            var product = _productService.GetProductById(id);
+            if (product != null)
+            {
+
+                return Ok(_mapper.Map<ProductDTO>(product));
+            }
+
+            return NotFound();
         }
         
         [HttpGet]
-        [Route("{category}")]
+        [Route("findByCategory/{category}")]
         public ActionResult<Product> GetProductsByCategory()
         {
             throw new NotImplementedException();
         }
         
         [HttpGet]
-        [Route("{name}")]
+        [Route("findByName/{name}")]
         public ActionResult<Product> GetProductByName()
         {
             throw new NotImplementedException();
@@ -50,23 +61,34 @@ namespace FlowerApi.Controllers
         
         [HttpPost]
         [Route("add")]
-        public ActionResult AddProduct()
+        public ActionResult<Product> AddProduct(ProductDTO productDTO)
         {
-            throw new NotImplementedException();
+            Product product = new Product { Name = productDTO.Name, Amount = productDTO.Amount, Price = productDTO.Price };
+            _productService.CreateProduct(product);
+
+            return Ok(product);
         }
         
         [HttpPut]
         [Route("{id}")]
-        public ActionResult Update()    // TODO import productdto when db done
+        public ActionResult Update(Guid id)    // TODO import productdto when db done
         {
-            throw new NotImplementedException();
+            try
+            {
+               var product = _productService.UpdateProduct(id);
+                return Ok(product);
+            }
+            catch (Exception) { return NotFound("Failed to update"); }
         }
         
         [HttpDelete]
         [Route("{id}")]
         public ActionResult Delete(Guid id)
         {
-            throw new NotImplementedException();
+            if (_productService.DeleteProduct(id))
+                return Ok("Deleted");
+            else
+                return NotFound("Failed to delete");
         }
         
     }

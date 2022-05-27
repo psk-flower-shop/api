@@ -20,7 +20,7 @@ namespace FlowerApi.Repositories
 
         public IEnumerable<Product> GetProductsByCategory(String categoryName)
         {
-            return this.GetProducts().Where(x => x.Category.Name == categoryName);
+            return this.GetProducts().Where(x => x.Category == categoryName);
         }
 
         public IEnumerable<Product> GetProducts() => _context.Products.Include(e => e.Category).ToList();

@@ -26,7 +26,8 @@ namespace FlowerApi.Services
             {
                 Price = product.Price,
                 Quantity = 1,
-                Product = product
+                Product = product,
+                Name = product.Name
 
             };
             _userRepo.AddProductToUserCart(cartItem, id);

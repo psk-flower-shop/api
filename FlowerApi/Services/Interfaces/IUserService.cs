@@ -10,6 +10,7 @@ namespace FlowerApi.Services.Interfaces
 		Task<User> CreateUser();
 		Task<User> DeleteUser();
 		Task<User> UpdateUser();
+	    List<CartItem> getUsersCartItems(Guid userId);
 	}
 }
 

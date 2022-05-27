@@ -35,6 +35,15 @@ namespace FlowerApi.Repositories
         
         }
 
+        public List<CartItem> getUsersCartItems(Guid userId) {
+           var users = _context.Users.Include(x => x.Cart).Include(x => x.Cart.ProductsInCart).ToList();
+            if (users != null)
+            {
+                return users.FirstOrDefault(x => x.Id == userId).Cart.ProductsInCart;
+            }
+            return null;
+        }
+
         public User GetUserById(Guid id)
         {
 

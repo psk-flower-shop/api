@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using FlowerApi.Entities;
 using Microsoft.AspNetCore.Mvc;
 using FlowerApi.Services.Interfaces;
+using FlowerApi.DTO;
+using AutoMapper;
 
 namespace FlowerApi.Controllers
 {
@@ -12,6 +14,7 @@ namespace FlowerApi.Controllers
     {
 
         private readonly ICategoryService _categoryService;
+        private readonly IMapper _mapper;
 
         public CategoryController(ICategoryService service)
         {
@@ -39,9 +42,13 @@ namespace FlowerApi.Controllers
 
         [HttpPost]
         [Route("add")]
-        public ActionResult AddCategory()
+        public ActionResult<Category> AddCategory(CategoryDTO categoryCreateDTO)
         {
-            throw new NotImplementedException();
+            Category category = new Category { Name = categoryCreateDTO.Name };
+
+            _categoryService.AddCategory(category);
+
+            return Ok(category);
         }
 
         [HttpPut]

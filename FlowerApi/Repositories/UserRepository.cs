@@ -14,6 +14,14 @@ namespace FlowerApi.Repositories
 
 		}
 
+        public bool AddUser(User user)
+        {
+            _context.Users.Add(user);
+            _context.SaveChanges();
+
+            return true;
+        }
+
         public bool DeleteUser(User user)
         {
             throw new NotImplementedException();
@@ -22,6 +30,7 @@ namespace FlowerApi.Repositories
         public User GetUserById(Guid id) => _context.Users.ToList().FirstOrDefault(us => us.Id == id);
 
         public IEnumerable<User> GetUsers() => _context.Users.ToList();
+
     }
 }
 

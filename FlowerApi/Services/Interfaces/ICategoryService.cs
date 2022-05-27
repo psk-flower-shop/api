@@ -1,4 +1,5 @@
 ﻿using System;
+using FlowerApi.DTO;
 using FlowerApi.Entities;
 
 namespace FlowerApi.Services.Interfaces
@@ -7,7 +8,7 @@ namespace FlowerApi.Services.Interfaces
 	{
 		IEnumerable<Category> GetCategories();
 		Category GetCategoryById(Guid id);
-		Task<Category> CreateCategory();
+		void AddCategory(Category categoryModel);
 		Task<Category> DeleteCategory();
 		Task<Category> UpdateCategory();
 	}

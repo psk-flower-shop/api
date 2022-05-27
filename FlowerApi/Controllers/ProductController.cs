@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using FlowerApi.Entities;
 using Microsoft.AspNetCore.Mvc;
 using FlowerApi.Services.Interfaces;
+using FlowerApi.DTO;
+using AutoMapper;
 
 namespace FlowerApi.Controllers
 {
@@ -12,10 +14,12 @@ namespace FlowerApi.Controllers
     {
         
         private readonly IProductService _productService;    // TODO DI in program.cs
+        private readonly IMapper _mapper;
         
-        public ProductController(IProductService service)
+        public ProductController(IProductService service, IMapper mapper)
         {
             _productService = service;
+            _mapper = mapper;
         }
         
         // /api/product/{id}
@@ -29,12 +33,13 @@ namespace FlowerApi.Controllers
         
         [HttpGet]
         [Route("findById/{id}")]
-        public ActionResult<Product> GetProductById(Guid id)
+        public ActionResult<ProductDTO> GetProductById(Guid id)
         {
             var product = _productService.GetProductById(id);
             if (product != null)
             {
-                return Ok(product);
+
+                return Ok(_mapper.Map<ProductDTO>(product));
             }
 
             return NotFound();

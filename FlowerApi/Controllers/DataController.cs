@@ -50,6 +50,10 @@ namespace FlowerApi.Controllers
 			Product product2 = new Product() { Name = "Papuosalas", Price = 20, Amount = 5, Category = gifts };
 			Product product3 = new Product() { Name = "Palme", Price = 20, Amount = 5, Category = plants };
 
+			_productRepository.AddProduct(product);
+			_productRepository.AddProduct(product2);
+			_productRepository.AddProduct(product3);
+
 			return Ok();
 
 		}

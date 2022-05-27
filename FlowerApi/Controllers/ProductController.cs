@@ -78,7 +78,7 @@ namespace FlowerApi.Controllers
                var product = _productService.UpdateProduct(id);
                 return Ok(product);
             }
-            catch (Exception) { return NotFound("Failed to update")}
+            catch (Exception) { return NotFound("Failed to update"); }
         }
         
         [HttpDelete]

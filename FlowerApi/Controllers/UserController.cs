@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using FlowerApi.Entities;
 using Microsoft.AspNetCore.Mvc;
 using FlowerApi.Services.Interfaces;
+using FlowerApi.DTO;
+using AutoMapper;
 
 namespace FlowerApi.Controllers
 {
@@ -12,9 +14,11 @@ namespace FlowerApi.Controllers
     {
 
         private readonly IUserService _userService;
+        private readonly IMapper _mapper;
 
-        public UserController(IUserService service)
+        public UserController(IUserService service, IMapper mapper)
         {
+            _mapper = mapper;
             _userService = service;
         }
 
@@ -38,6 +42,19 @@ namespace FlowerApi.Controllers
             }
 
             return NotFound();
+        }
+
+        [HttpGet]
+        [Route("cart/{id}")]
+        public ActionResult<List<CartItemDTO>> GetUserCartItemsList(Guid id)
+        {
+            var items = _userService.getUsersCartItems(id);
+            if (items != null) {
+                var dtos = _mapper.Map<List<CartItemDTO>>(items);
+                return Ok(dtos);
+            }
+
+            return NotFound("something went wrong");
         }
 
         [HttpPost]

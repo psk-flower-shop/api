@@ -40,6 +40,11 @@ namespace FlowerApi.Services
             return _userRepository.GetUsers();
         }
 
+        public List<CartItem> getUsersCartItems(Guid userId)
+        {
+            var items = _userRepository.getUsersCartItems(userId);
+            return items;
+        }
     }
 }
 

@@ -46,10 +46,15 @@ namespace FlowerApi.Controllers
         }
         
         [HttpGet]
-        [Route("findByCategory/{category}")]
-        public ActionResult<Product> GetProductsByCategory()
+        [Route("findByCategory/{categoryName}")]
+        public ActionResult<List<Product>> GetProductsByCategory(String categoryName)
         {
-            throw new NotImplementedException();
+            var products = _productService.GetProductsByCategory(categoryName);
+            if (products != null)
+            {
+                return Ok(products);
+            }
+            return NotFound();
         }
         
         [HttpGet]

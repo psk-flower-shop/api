@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FlowerApi.Services.Interfaces;
 using FlowerApi.Entities;
+using FlowerApi.Repositories.Interfaces;
 
 
 namespace FlowerApi.Services
@@ -15,12 +16,14 @@ namespace FlowerApi.Services
     public class LoginService : ILoginService
     {
         private readonly IHashPasswordService _hashPasswordService;
+        private readonly IUserRepository _userRepository;
 
-        private List<User> users = new List<User>();    // TODO get users from db
+            // TODO get users from db
 
-        public LoginService(IHashPasswordService hashPasswordService)
+        public LoginService(IHashPasswordService hashPasswordService, IUserRepository userRepository)
         {
             _hashPasswordService = hashPasswordService;
+            _userRepository = userRepository;
         }
 
         public bool CheckUserLoginInformation(User tryUser, User loginUser)
@@ -37,11 +40,11 @@ namespace FlowerApi.Services
         }
         public void AddUser(User user)
         {
-            users.Add(user); // adds a seller to a list from Register class, TODO: when DB is all set and running, change so it adds to the DB, and not the list
+            _userRepository.AddUser(user); // adds a seller to a list from Register class, TODO: when DB is all set and running, change so it adds to the DB, and not the list
         }
         public IEnumerable<User> GetUsers()
         {
-            return users;
+            return _userRepository.GetUsers();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace FlowerApi.Controllers
         }
         [HttpPost]
         [Route("check")]
-        public ActionResult<User> VerifyUser(User user)
+        public ActionResult<String> VerifyUser(User user)
         {
             try{
                 IEnumerable<User> users = _loginService.GetUsers();
@@ -36,7 +36,8 @@ namespace FlowerApi.Controllers
                 
                 if(_loginService.CheckUserLoginInformation(user, goodUser))
                 {
-                    return Ok(goodUser);
+                    string token = Convert.ToBase64String(goodUser.Id.ToByteArray());
+                    return Ok(token);
                 }
                 throw new System.Exception();
 

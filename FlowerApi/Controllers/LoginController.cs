@@ -24,16 +24,16 @@ namespace FlowerApi.Controllers
         }
         [HttpPost]
         [Route("check")]
-        public ActionResult<String> VerifyUser(User user)
+        public ActionResult<String> VerifyUser(string email, string password)
         {
             try{
                 IEnumerable<User> users = _loginService.GetUsers();
-                User goodUser = users.Single(users => users.Email == user.Email);
+                User goodUser = users.Single(users => users.Email == email);
 
                 if(goodUser == null){
                     throw new KeyNotFoundException();
                 }
-                
+                User user = new User(new Guid(), "s", email, password, null, null);
                 if(_loginService.CheckUserLoginInformation(user, goodUser))
                 {
                     string token = Convert.ToBase64String(goodUser.Id.ToByteArray());

@@ -12,6 +12,8 @@ namespace FlowerApi.Repositories.Interfaces
             public bool AddProductToUserCart(CartItem item, Guid id);
         public bool AddProductToWishlist(Product product, Guid userId);
             public List<CartItem> getUsersCartItems(Guid userId);
+            public void StartOwnTransactionWithinContext(string email);
+
         public List<Product> getWishList(Guid userId);
     }
 }

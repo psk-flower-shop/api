@@ -9,5 +9,13 @@ namespace FlowerApi.Repositories.Interfaces
         public IEnumerable<Product> GetProducts();
 
         public Product GetProductById(Guid id);
+
+        public void AddToCart(Product product, Guid cartId);
+
+        public void DeleteProduct(Product product);
+
+        public void UpdateProduct(Guid id, Product product);
+
+        public void AddProduct(Product product);
     }
 }

@@ -17,6 +17,8 @@ namespace FlowerApi.Repositories
 
         public bool AddUser(User user)
         {
+            user.Cart = new Cart();
+            user.Cart.ProductsInCart = new List<CartItem>();
             _context.Users.Add(user);
             _context.SaveChanges();
 

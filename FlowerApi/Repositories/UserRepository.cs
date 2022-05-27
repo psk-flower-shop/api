@@ -62,6 +62,10 @@ namespace FlowerApi.Repositories
 
         public IEnumerable<User> GetUsers() => _context.Users.Include(x => x.Cart).ToList();
 
+        public List<Product> getWishList(Guid userId)
+        {
+            return _context.Users.FirstOrDefault(x => x.Id == userId).FavoriteProducts.ToList();
+        }
     } 
 }
 

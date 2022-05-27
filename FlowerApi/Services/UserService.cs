@@ -60,6 +60,11 @@ namespace FlowerApi.Services
             this._userRepository.AddProductToWishlist(product, userId);
             return true;
         }
+
+        public List<Product> GetWishList(Guid id)
+        {
+            return _userRepository.getWishList(id);
+        }
     }
 }
 

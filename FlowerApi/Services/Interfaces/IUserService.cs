@@ -9,7 +9,7 @@ namespace FlowerApi.Services.Interfaces
 		User GetUserById(Guid id);
 		Task<User> CreateUser();
 		Task<User> DeleteUser();
-		Task<User> UpdateUser();
+		User UpdateUser(string email);
 	    List<CartItem> getUsersCartItems(Guid userId);
 		bool AddProductToWishlist(Guid productId, Guid userId);
 		List<Product> GetWishList(Guid id);

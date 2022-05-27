@@ -49,5 +49,11 @@ namespace FlowerApi.Repositories
             _context.Products.Add(product);
             _context.SaveChanges();
         }
+
+        async public Task MakeReservation(Guid userid) {
+
+            await Task.Delay(5000);
+            _context.Users.Include(x => x.Cart).FirstOrDefault(x => x.Id == userid).Cart = new Cart() { ProductsInCart = new List<CartItem>() };
+        }
     }
 }

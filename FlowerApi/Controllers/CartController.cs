@@ -32,6 +32,12 @@ namespace FlowerApi.Controllers
         {
             throw new NotImplementedException();
         }
+
+        [HttpPost]
+        [Route("reservation/{userId}")]
+        public async Task MakeReservationToOrder(Guid userId) {
+           await _cartService.ReserveCart(userId);       
+        }
         
         [HttpPost]
         [Route("add/{userId}/{productId}")]

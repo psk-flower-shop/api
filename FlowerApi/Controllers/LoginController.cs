@@ -56,7 +56,7 @@ namespace FlowerApi.Controllers
 
         [HttpGet]
         [Route("user")]
-        public ActionResult<List<User>> GetUserByToken(string token)
+        public ActionResult<User> GetUserByToken(string token)
         {
             byte[] data = Convert.FromBase64String(token);
             Guid guid = new Guid(data);

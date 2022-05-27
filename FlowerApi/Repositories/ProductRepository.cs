@@ -23,7 +23,7 @@ namespace FlowerApi.Repositories
             return this.GetProducts().Where(x => x.Category == categoryName);
         }
 
-        public IEnumerable<Product> GetProducts() => _context.Products.Include(e => e.Category).ToList();
+        public IEnumerable<Product> GetProducts() => _context.Products.ToList();
 
         public void AddToCart(Product product, Guid cartId)
         {

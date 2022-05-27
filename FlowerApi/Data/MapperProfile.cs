@@ -15,6 +15,8 @@ namespace FlowerApi.Data
 			CreateMap<Cart, CartDTO>();
 			CreateMap<Product, ProductDTO>();
 			CreateMap<ProductDTO, Product>();
+			CreateMap<CartItem, CartItemDTO>();
+			CreateMap<CartItemDTO, CartItem>();
 
 		}
 	}

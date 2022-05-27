@@ -78,9 +78,9 @@ namespace FlowerApi.Controllers
 
         [HttpGet]
         [Route("favourite/{userid}")]
-        public ActionResult GetWishList(Guid userId) {
-            _userService.GetWishList(userId);
-            return Ok();
+        public ActionResult<List<Product>> GetWishList(Guid userid) {
+            
+            return Ok(_userService.GetWishList(userid));
         }
 
         [HttpPut]

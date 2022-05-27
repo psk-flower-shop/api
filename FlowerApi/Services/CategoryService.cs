@@ -2,6 +2,7 @@
 using FlowerApi.Entities;
 using FlowerApi.Services.Interfaces;
 using FlowerApi.Repositories.Interfaces;
+using FlowerApi.DTO;
 
 namespace FlowerApi.Services
 {
@@ -14,9 +15,9 @@ namespace FlowerApi.Services
             this._categoryRepository = repository;
 		}
 
-        public Task<Category> CreateCategory()
+        public void AddCategory(Category categoryModel)
         {
-            throw new NotImplementedException();
+            _categoryRepository.AddCategory(categoryModel);
         }
 
         public Task<Category> DeleteCategory()
@@ -38,7 +39,6 @@ namespace FlowerApi.Services
         {
             return _categoryRepository.GetCategoryById(id);
         }
-
     }
 }
 

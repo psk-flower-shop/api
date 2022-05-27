@@ -15,14 +15,26 @@ namespace FlowerApi.Services
             _productRepository = repository;
 		}
 
-        public Task<Product> CreateProduct()
+        public Product CreateProduct(Product product)
         {
-            throw new NotImplementedException();
+            _productRepository.AddProduct(product);
+            return product;
         }
 
-        public Task<Product> DeleteProduct()
+        public bool DeleteProduct(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Product product = GetProducts().Single(x => x.Id == id);
+                _productRepository.DeleteProduct(product);
+                return true;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("rip bozo. No such product");
+                return false;
+            }
+            
         }
 
         public Product GetProductById(Guid id)
@@ -35,9 +47,14 @@ namespace FlowerApi.Services
             return _productRepository.GetProducts();
         }
 
-        public Task<Product> UpdateProduct()
+        public Product UpdateProduct(Guid id)
         {
-            throw new NotImplementedException();
+            var product = GetProducts().FirstOrDefault(x => x.Id == id);
+            if (product != null)
+                _productRepository.UpdateProduct(id, product);
+            else return new Product();
+
+            return product;
         }
     }
 }

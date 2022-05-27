@@ -22,10 +22,13 @@ namespace FlowerApi.Services
         public bool AddProductToCart(Guid id, Product product)
         {
             var user = _userRepo.GetUserById(id);
-            var cartId = user.Cart.Id;
-
-
-            return true;
+            if (user.Cart != null)
+            {
+               // user.Cart.ProductsInCart?.Add(product);
+                user.Cart.Price += product.Price;
+                return true;
+            }
+            return false;
         }
 
         public bool CreateCart(User user, int cents, int euros, List<Product> products)
@@ -54,7 +57,7 @@ namespace FlowerApi.Services
             try
             {
                 var user = _userRepo.GetUserById(id);
-                user.Cart?.ProductsInCart?.Remove(product);
+               // user.Cart?.ProductsInCart?.Remove(product);
                 return true;
             }
             catch(NullReferenceException) {
@@ -67,7 +70,7 @@ namespace FlowerApi.Services
         public bool UpdateCart(Guid id, decimal price, List<Product> products)
         {
             var user = this._userRepo.GetUserById(id);
-            user.Cart = new Cart(price,products);
+           // user.Cart = new Cart(price,products);
             //_userRepo.UpdateUser(user);
             return true;
         }

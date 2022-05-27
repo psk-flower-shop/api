@@ -11,7 +11,7 @@ namespace FlowerApi.Controllers
     public class CategoryController : Controller
     {
 
-        private readonly ICategoryService _categoryService;    // TODO DI in program.cs
+        private readonly ICategoryService _categoryService;
 
         public CategoryController(ICategoryService service)
         {

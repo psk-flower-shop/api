@@ -46,5 +46,10 @@ namespace FlowerApi.Services
         {
             return _userRepository.GetUsers();
         }
+
+        public User GetUserByGuid(Guid guid)
+        {
+            return _userRepository.GetUserById(guid);
+        }
     }
 }

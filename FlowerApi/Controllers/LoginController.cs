@@ -53,5 +53,15 @@ namespace FlowerApi.Controllers
         {
             return Ok(_userRepository.GetUsers());
         }
+
+        [HttpGet]
+        [Route("user")]
+        public ActionResult<List<User>> GetUserByToken(string token)
+        {
+            byte[] data = Convert.FromBase64String(token);
+            Guid guid = new Guid(data);
+
+            return Ok(_loginService.GetUserByGuid(guid));
+        }
     }
 }

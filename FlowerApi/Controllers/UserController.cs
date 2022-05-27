@@ -76,6 +76,13 @@ namespace FlowerApi.Controllers
             return Ok("Something went wrong");
         }
 
+        [HttpGet]
+        [Route("favourite/{userid}")]
+        public ActionResult GetWishList(Guid userId) {
+            _userService.GetWishList(userId);
+            return Ok();
+        }
+
         [HttpPut]
         [Route("{id}")]
         public ActionResult UpdateUser()    // TODO import productdto when db done

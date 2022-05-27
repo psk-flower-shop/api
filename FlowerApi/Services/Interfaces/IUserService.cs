@@ -12,6 +12,7 @@ namespace FlowerApi.Services.Interfaces
 		Task<User> UpdateUser();
 	    List<CartItem> getUsersCartItems(Guid userId);
 		bool AddProductToWishlist(Guid productId, Guid userId);
+		List<Product> GetWishList(Guid id);
 	}
 }
 

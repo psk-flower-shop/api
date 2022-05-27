@@ -54,6 +54,7 @@ namespace FlowerApi.Repositories
 
             await Task.Delay(5000);
             _context.Users.Include(x => x.Cart).FirstOrDefault(x => x.Id == userid).Cart = new Cart() { ProductsInCart = new List<CartItem>() };
+            _context.SaveChanges();
         }
     }
 }

@@ -2,6 +2,7 @@
 using FlowerApi.Entities;
 using FlowerApi.Services.Interfaces;
 using FlowerApi.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace FlowerApi.Services
 {
@@ -25,9 +26,21 @@ namespace FlowerApi.Services
             throw new NotImplementedException();
         }
 
-        public Task<User> UpdateUser()
+        public User UpdateUser(string email)
         {
-            throw new NotImplementedException();
+            IEnumerable<User> users = _userRepository.GetUsers();
+            User user = users.Single(users => users.Email == email);
+
+            try
+            {
+                _userRepository.StartOwnTransactionWithinContext(user.Email);
+            }catch(DbUpdateConcurrencyException ex)
+            {
+                return null;
+            }
+            
+
+            return user;
         }
 
         public User GetUserById(Guid id)

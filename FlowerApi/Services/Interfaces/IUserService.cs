@@ -9,8 +9,9 @@ namespace FlowerApi.Services.Interfaces
 		User GetUserById(Guid id);
 		Task<User> CreateUser();
 		Task<User> DeleteUser();
-		Task<User> UpdateUser();
-	    List<CartItem> getUsersCartItems(Guid userId);
+		public User UpdateUser(string email);
+
+		List<CartItem> getUsersCartItems(Guid userId);
 	}
 }
 

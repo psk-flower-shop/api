@@ -78,5 +78,16 @@ namespace FlowerApi.Controllers
             throw new NotImplementedException();
         }
 
+        [HttpPost]
+        [Route("update")]
+        public ActionResult UpdateUser(string email)    // TODO import productdto when db done
+        {
+            var user = _userService.UpdateUser(email);
+            if(user != null)
+            {
+                return Ok();
+            }
+            return NotFound();
+        }
     }
 }

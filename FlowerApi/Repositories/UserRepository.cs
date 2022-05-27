@@ -3,6 +3,12 @@ using FlowerApi.Data;
 using FlowerApi.Entities;
 using FlowerApi.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+
+using System.Data.SqlClient;
+using System.Linq;
+using System.Transactions;
 
 namespace FlowerApi.Repositories
 {
@@ -52,6 +58,24 @@ namespace FlowerApi.Repositories
         }
 
         public IEnumerable<User> GetUsers() => _context.Users.Include(x => x.Cart).ToList();
+
+        public void StartOwnTransactionWithinContext(string email)
+        {
+            using (var context = new FlowersContext())
+            {
+                using (var dbContextTransaction = context.Database.BeginTransaction())
+                {
+                    context.Database.ExecuteSqlRaw(
+                        @"UPDATE Users SET Name = 'testukas2'" +
+                            " WHERE Email LIKE '%" + email + "'"
+                        );
+
+                    context.SaveChanges();
+
+                    dbContextTransaction.Commit();
+                }
+            }
+        }
 
     } 
 }

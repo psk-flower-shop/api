@@ -24,8 +24,12 @@ namespace FlowerApi.Controllers
         }
         [HttpPost]
         [Route("check")]
-        public ActionResult<String> VerifyUser(string email, string password)
+        public ActionResult<String> VerifyUser([FromBody] HtmlBody body)
         {
+
+            string email = body.Email;
+            string password = body.Password;
+
             try{
                 IEnumerable<User> users = _loginService.GetUsers();
                 User goodUser = users.Single(users => users.Email == email);

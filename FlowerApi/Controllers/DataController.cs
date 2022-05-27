@@ -28,7 +28,7 @@ namespace FlowerApi.Controllers
 		[Route("add")]
 		public ActionResult PopulateDatabase()
         {
-			User user = new User() { Email = "test@test.com", Name = "Testas", Password = "Testas", Cart = new Cart() {ProductsInCart = new List<CartItem>() } };
+			User user = new User() { Email = "test@test.com", Name = "Testas", Password = "Testas", Cart = new Cart() { ProductsInCart = new List<CartItem>() } };
 			User user2 = new User() { Email = "test2@test.com", Name = "Testas2", Password = "Testas2", Cart = new Cart() { ProductsInCart = new List<CartItem>() } };
 
 			_userRepository.AddUser(user);

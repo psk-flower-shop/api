@@ -21,13 +21,15 @@ namespace FlowerApi.Services
 
         public bool AddProductToCart(Guid id, Product product)
         {
-            var user = _userRepo.GetUserById(id);
-            if (user.Cart != null)
+
+            CartItem cartItem = new CartItem()
             {
-               // user.Cart.ProductsInCart?.Add(product);
-                user.Cart.Price += product.Price;
-                return true;
-            }
+                Price = product.Price,
+                Quantity = 1,
+                Product = product
+
+            };
+            _userRepo.AddProductToUserCart(cartItem, id);
             return false;
         }
 

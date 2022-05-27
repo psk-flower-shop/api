@@ -9,6 +9,8 @@ namespace FlowerApi.Repositories.Interfaces
             public IEnumerable<User> GetUsers();
             public User GetUserById(Guid id);
             public bool AddUser(User user);
-        
+            public bool AddProductToUserCart(CartItem item, Guid id);
+
+
     }
 }

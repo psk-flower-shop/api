@@ -28,10 +28,17 @@ namespace FlowerApi.Repositories
             throw new NotImplementedException();
         }
 
+        public bool AddProductToUserCart(CartItem item, Guid id) {
+            _context.Users.Include(x => x.Cart).Include(x => x.Cart.ProductsInCart).ToList().First(x => x.Id == id).Cart.ProductsInCart.Add(item);
+            _context.SaveChanges();
+            return true;
+        
+        }
+
         public User GetUserById(Guid id)
         {
 
-           return _context.Users.Include(x => x.Cart).ToList().First(us => us.Id == id);
+           return _context.Users.Include(x => x.Cart).Include(x => x.Cart.ProductsInCart).ToList().First(us => us.Id == id);
         
         }
 

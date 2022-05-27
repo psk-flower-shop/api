@@ -16,11 +16,11 @@ namespace FlowerApi.Repositories
             this._context = context;
 		}
 
-        public Product GetProductById(Guid id) => _context.Products.ToList().FirstOrDefault(x => x.Id == id);
+        public Product GetProductById(Guid id) => _context.Products.ToList().First(x => x.Id == id);
 
         public IEnumerable<Product> GetProductsByCategory(String categoryName)
         {
-            return this.GetProducts().Where(x => x.Category.Name == categoryName);
+            return this.GetProducts().Where(x => x.Category == categoryName);
         }
 
         public IEnumerable<Product> GetProducts() => _context.Products.Include(e => e.Category).ToList();

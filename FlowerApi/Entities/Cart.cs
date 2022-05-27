@@ -12,14 +12,13 @@ namespace FlowerApi.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public decimal Price  { get; set; }
-        public List<Product>? ProductsInCart { get; set; }
+        public List<CartItem>? ProductsInCart { get; set; }
 
         public Guid UserId { get; set; }
-        public User User { get; set; }
 
         public Cart() { }
 
-        public Cart(decimal price, List<Product> productsInCart) {
+        public Cart(decimal price, List<CartItem> productsInCart) {
             this.Price = price;
             this.ProductsInCart = productsInCart;
         }

@@ -3,6 +3,7 @@ using System;
 using FlowerApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlowerApi.Migrations
 {
     [DbContext(typeof(FlowersContext))]
-    partial class FlowersContextModelSnapshot : ModelSnapshot
+    [Migration("20220527140158_cartFix")]
+    partial class cartFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
@@ -37,31 +39,18 @@ namespace FlowerApi.Migrations
                     b.ToTable("Carts");
                 });
 
-            modelBuilder.Entity("FlowerApi.Entities.CartItem", b =>
+            modelBuilder.Entity("FlowerApi.Entities.Category", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("CartId")
+                    b.Property<string>("Name")
                         .HasColumnType("TEXT");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CartId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("CartItems");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("FlowerApi.Entities.Product", b =>
@@ -73,8 +62,10 @@ namespace FlowerApi.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
+                    b.Property<Guid?>("CartId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("CategoryId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -84,6 +75,10 @@ namespace FlowerApi.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
                 });
@@ -132,23 +127,21 @@ namespace FlowerApi.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("FlowerApi.Entities.CartItem", b =>
+            modelBuilder.Entity("FlowerApi.Entities.Product", b =>
                 {
                     b.HasOne("FlowerApi.Entities.Cart", "Cart")
                         .WithMany("ProductsInCart")
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CartId");
 
-                    b.HasOne("FlowerApi.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
+                    b.HasOne("FlowerApi.Entities.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Cart");
 
-                    b.Navigation("Product");
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("ProductUser", b =>
@@ -169,6 +162,11 @@ namespace FlowerApi.Migrations
             modelBuilder.Entity("FlowerApi.Entities.Cart", b =>
                 {
                     b.Navigation("ProductsInCart");
+                });
+
+            modelBuilder.Entity("FlowerApi.Entities.Category", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("FlowerApi.Entities.User", b =>

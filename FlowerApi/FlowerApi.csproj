@@ -34,7 +34,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\Interfaces\" />
-    <Folder Include="DTO\" />
     <Folder Include="Enum\" />
   </ItemGroup>
 </Project>

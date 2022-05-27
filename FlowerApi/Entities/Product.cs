@@ -11,16 +11,12 @@ namespace FlowerApi.Entities
         public decimal Price { get; set; }
         public int Amount { get; set; }
         public string? Name { get; set; }
-
-        public Guid CategoryId { get; set; }
-        public Category? Category { get; set; }
-
+        public string Category { get; set; }
         public List<User> Users { get; set; }
-        public Cart? Cart { get; set; }
 
         public Product() { }
 
-        public Product(Guid ID, decimal price, int amount, string name, Category category) {
+        public Product(Guid ID, decimal price, int amount, string name, string category) {
             this.Id = ID;
             this.Price = price;
             this.Amount = amount;

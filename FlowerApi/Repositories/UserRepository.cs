@@ -28,7 +28,12 @@ namespace FlowerApi.Repositories
             throw new NotImplementedException();
         }
 
-        public User GetUserById(Guid id) => _context.Users.ToList().FirstOrDefault(us => us.Id == id);
+        public User GetUserById(Guid id)
+        {
+
+           return _context.Users.Include(x => x.Cart).ToList().First(us => us.Id == id);
+        
+        }
 
         public IEnumerable<User> GetUsers() => _context.Users.Include(x => x.Cart).ToList();
 

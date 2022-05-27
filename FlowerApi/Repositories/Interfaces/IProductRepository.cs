@@ -10,6 +10,8 @@ namespace FlowerApi.Repositories.Interfaces
 
         public Product GetProductById(Guid id);
 
+        public IEnumerable<Product> GetProductsByCategory(string categoryName);
+
         public void AddToCart(Product product, Guid cartId);
 
         public void DeleteProduct(Product product);

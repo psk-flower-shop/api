@@ -18,6 +18,11 @@ namespace FlowerApi.Repositories
 
         public Product GetProductById(Guid id) => _context.Products.ToList().FirstOrDefault(x => x.Id == id);
 
+        public IEnumerable<Product> GetProductsByCategory(String categoryName)
+        {
+            return this.GetProducts().Where(x => x.Category.Name == categoryName);
+        }
+
         public IEnumerable<Product> GetProducts() => _context.Products.Include(e => e.Category).ToList();
 
         public void AddToCart(Product product, Guid cartId)

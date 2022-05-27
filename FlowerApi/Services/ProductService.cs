@@ -42,6 +42,11 @@ namespace FlowerApi.Services
             return _productRepository.GetProductById(id);
         }
 
+        public IEnumerable<Product> GetProductsByCategory(String categoryName)
+        {
+            return _productRepository.GetProductsByCategory(categoryName);
+        }
+
         public IEnumerable<Product> GetProducts()
         {
             return _productRepository.GetProducts();

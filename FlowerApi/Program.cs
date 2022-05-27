@@ -1,12 +1,9 @@
 using FlowerApi.Data;
 using FlowerApi.Services;
 using FlowerApi.Services.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using FlowerApi.Repositories;
 using FlowerApi.Repositories.Interfaces;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +22,14 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddSingleton<IRegisterService, RegisterService>();
 builder.Services.AddSingleton<ILoginService, LoginService>();
 builder.Services.AddSingleton<IHashPasswordService, HashPasswordService>();
+
+var mapperConfig = new MapperConfiguration(mc =>
+{
+    mc.AddProfile(new MapperProfile());
+});
+
+IMapper mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

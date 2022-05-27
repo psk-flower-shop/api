@@ -26,9 +26,9 @@ namespace FlowerApi.Controllers
         // nzn ar visu getu cia reikia, tai jei ka, istrint
         
         [HttpGet]
-        public ActionResult<IEnumerable<Product>> GetProducts()
+        public ActionResult<IEnumerable<ProductDTO>> GetProducts()
         {
-            return Ok(this._productService.GetProducts());
+            return Ok(_mapper.Map<List<ProductDTO>>(this._productService.GetProducts()));
         }
         
         [HttpGet]

@@ -2,6 +2,7 @@
 using FlowerApi.Entities;
 using FlowerApi.Repositories.Interfaces;
 using FlowerApi.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace FlowerApi.Repositories
 {
@@ -17,7 +18,7 @@ namespace FlowerApi.Repositories
 
         public Product GetProductById(Guid id) => _context.Products.ToList().FirstOrDefault(x => x.Id == id);
 
-        public IEnumerable<Product> GetProducts() => _context.Products.ToList();
+        public IEnumerable<Product> GetProducts() => _context.Products.Include(e => e.Category).ToList();
 
         public void AddToCart(Product product, Guid cartId)
         {

@@ -11,18 +11,24 @@ namespace FlowerApi.Services
     public class CartService : ICartService
     {
         IUserRepository _userRepo;
+        IProductRepository _productRepository;
 
-        public CartService( IUserRepository userRepository)
+        public CartService( IUserRepository userRepository, IProductRepository productRepository)
         {
             this._userRepo = userRepository;
+            this._productRepository = productRepository;
         }
 
-        public Task<bool> AddProductToCart(Guid id, Product product)
+        public bool AddProductToCart(Guid id, Product product)
         {
-            throw new NotImplementedException();
+            var user = _userRepo.GetUserById(id);
+            var cartId = user.Cart.Id;
+
+
+            return true;
         }
 
-        public Task<bool> CreateCart(User user, int cents, int euros, List<Product> products)
+        public bool CreateCart(User user, int cents, int euros, List<Product> products)
         {
             throw new NotImplementedException();
         }

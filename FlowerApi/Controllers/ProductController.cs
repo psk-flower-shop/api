@@ -46,7 +46,7 @@ namespace FlowerApi.Controllers
         }
         
         [HttpGet]
-        [Route("findByCatgory/{category}")]
+        [Route("findByCategory/{category}")]
         public ActionResult<Product> GetProductsByCategory()
         {
             throw new NotImplementedException();
@@ -61,23 +61,34 @@ namespace FlowerApi.Controllers
         
         [HttpPost]
         [Route("add")]
-        public ActionResult AddProduct()
+        public ActionResult<Product> AddProduct(ProductDTO productDTO)
         {
-            throw new NotImplementedException();
+            Product product = new Product { Name = productDTO.Name, Amount = productDTO.Amount, Price = productDTO.Price };
+            _productService.CreateProduct(product);
+
+            return Ok(product);
         }
         
         [HttpPut]
         [Route("{id}")]
-        public ActionResult Update()    // TODO import productdto when db done
+        public ActionResult Update(Guid id)    // TODO import productdto when db done
         {
-            throw new NotImplementedException();
+            try
+            {
+               var product = _productService.UpdateProduct(id);
+                return Ok(product);
+            }
+            catch (Exception) { return NotFound("Failed to update")}
         }
         
         [HttpDelete]
         [Route("{id}")]
         public ActionResult Delete(Guid id)
         {
-            throw new NotImplementedException();
+            if (_productService.DeleteProduct(id))
+                return Ok("Deleted");
+            else
+                return NotFound("Failed to delete");
         }
         
     }

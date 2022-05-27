@@ -7,8 +7,8 @@ namespace FlowerApi.Services.Interfaces
 	{
 		IEnumerable<Product> GetProducts();
 		Product GetProductById(Guid id);
-		Task<Product> CreateProduct();
-		Task<Product> DeleteProduct();
-		Task<Product> UpdateProduct();
+		Product CreateProduct(Product product);
+		bool DeleteProduct(Guid id);
+		Product UpdateProduct(Guid id);
 	}
 }

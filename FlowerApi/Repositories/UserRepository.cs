@@ -43,6 +43,13 @@ namespace FlowerApi.Repositories
         
         }
 
+        public bool AddProductToWishlist(Product product, Guid userId)
+        {
+            _context.Users.Include(x => x.FavoriteProducts).ToList().First(x => x.Id == userId).FavoriteProducts.Add(product);
+            _context.SaveChanges();
+            return true;
+        }
+
         public List<CartItem> getUsersCartItems(Guid userId) {
            var users = _context.Users.Include(x => x.Cart).Include(x => x.Cart.ProductsInCart).ToList();
             if (users != null)
@@ -79,6 +86,10 @@ namespace FlowerApi.Repositories
             }
         }
 
+        public List<Product> getWishList(Guid userId)
+        {
+            return _context.Users.FirstOrDefault(x => x.Id == userId).FavoriteProducts.ToList();
+        }
     } 
 }
 

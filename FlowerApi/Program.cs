@@ -23,6 +23,7 @@ builder.Services.AddScoped<IRegisterService, RegisterService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IHashPasswordService, HashPasswordService>();
 
+
 var mapperConfig = new MapperConfiguration(mc =>
 {
     mc.AddProfile(new MapperProfile());

@@ -64,6 +64,25 @@ namespace FlowerApi.Controllers
             throw new NotImplementedException();
         }
 
+        [HttpPost]
+        [Route("favorite/{userId}/{productId}")]
+        public ActionResult AddProductToWishlist(Guid userId, Guid productId)
+        {
+            if(_userService.AddProductToWishlist(userId, productId))
+            {
+                return Ok("Product added to wishlist successfully");
+            }
+
+            return Ok("Something went wrong");
+        }
+
+        [HttpGet]
+        [Route("favourite/{userid}")]
+        public ActionResult GetWishList(Guid userId) {
+            _userService.GetWishList(userId);
+            return Ok();
+        }
+
         [HttpPut]
         [Route("{id}")]
         public ActionResult UpdateUser()    // TODO import productdto when db done

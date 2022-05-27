@@ -10,10 +10,12 @@ namespace FlowerApi.Services
 	{
 
         private readonly IUserRepository _userRepository;
+        private readonly IProductService _productService;
 
-        public UserService(IUserRepository repository)
+        public UserService(IUserRepository repository, IProductService productService)
 		{
             this._userRepository = repository;
+            this._productService = productService;
 		}
 
         public Task<User> CreateUser()
@@ -57,6 +59,24 @@ namespace FlowerApi.Services
         {
             var items = _userRepository.getUsersCartItems(userId);
             return items;
+        }
+
+        public bool AddProductToWishlist(Guid userId, Guid productId)
+        {
+            var product = this._productService.GetProductById(productId);
+
+            if (product == null)
+            {
+                return false;
+            }
+
+            this._userRepository.AddProductToWishlist(product, userId);
+            return true;
+        }
+
+        public List<Product> GetWishList(Guid id)
+        {
+            return _userRepository.getWishList(id);
         }
     }
 }

@@ -8,7 +8,7 @@
     //TODO: make logs in DB.
     public class Logger:LogBase
     {
-        private string filePath = "FlowerLog.log";
+        private string filePath = "../../FlowerLog.log";
 
         public override void Log(string message)
         {
